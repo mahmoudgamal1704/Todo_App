@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/models/providers/addtaskprovider.dart';
 import 'package:todoapp/shared/styles/colors.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class AddTaskBottom extends StatelessWidget {
   // const AddTaskBottom({Key? key}) : super(key: key);
@@ -76,7 +78,7 @@ class AddTaskBottom extends StatelessWidget {
                   prov.SelectDate(context);
                 },
                 child: Text(
-                  '${prov.selectedDate.day}/${prov.selectedDate.month}/${prov.selectedDate.year}',
+                  '${DateFormat('EEE, MMM d, ''yyyy').format(prov.selectedDate)}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
