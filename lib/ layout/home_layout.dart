@@ -5,6 +5,7 @@ import 'package:todoapp/models/providers/tabprovider.dart';
 import 'package:todoapp/modules/setting/setting.dart';
 import 'package:todoapp/modules/tasklist/tasklist.dart';
 import 'package:todoapp/shared/styles/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeLayout extends StatelessWidget {
   // const HomeLayout({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
-            title: Text('Route Tasks'),
+            title: Text(AppLocalizations.of(context)!.title ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
