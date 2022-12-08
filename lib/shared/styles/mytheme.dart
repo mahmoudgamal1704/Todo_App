@@ -22,6 +22,9 @@ class MyTheme {
       iconTheme: IconThemeData(color: Whitecolor),
       centerTitle: false,
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Primarycolor,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Whitecolor,
       selectedItemColor: Primarycolor,
@@ -57,6 +60,9 @@ class MyTheme {
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: Blackcolor),
       centerTitle: false,
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Primarycolor,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Color.fromRGBO(20, 25, 34, 1.0),
