@@ -1,10 +1,20 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppData {
 
- static Map AppLang = {
-    'en' :'',
-    'ar' : 'Arabic'
-  };
+ static Map AppLang(BuildContext context) {
+    return {
+      'en' :AppLocalizations.of(context)!.en,
+      'ar' : AppLocalizations.of(context)!.ar,
+
+    };
+
+  }
+
+ // static Map AppLang = {
+ //    'en' :'English',
+ //    'ar' : 'Arabic'
+ //  };
 }
