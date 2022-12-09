@@ -16,7 +16,7 @@ class Settings extends StatelessWidget {
     var prov = Provider.of<MainProvider>(context);
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 60, horizontal: 50),
+      padding: EdgeInsets.symmetric(vertical: 60, horizontal: 30),
       color: Theme.of(context).colorScheme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
