@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyTheme.lightTheme ,
       darkTheme: MyTheme.darktheme,
-      themeMode: ThemeMode.light ,
+      themeMode: myprov.Currentmode ,
 
     );
   }

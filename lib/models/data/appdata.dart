@@ -10,9 +10,14 @@ class AppData {
       'ar' : AppLocalizations.of(context)!.ar,
 
     };
-
   }
+ static Map<ThemeMode, String> Appmodes(BuildContext context) {
+   return {
+     ThemeMode.light :AppLocalizations.of(context)!.light,
+     ThemeMode.dark : AppLocalizations.of(context)!.dark,
 
+   };
+ }
  // static Map AppLang = {
  //    'en' :'English',
  //    'ar' : 'Arabic'

@@ -56,7 +56,7 @@ class MyTheme {
         background: BackGdarkcolor,
         onBackground: Blackcolor,
         surface: Colors.grey,
-        onSurface: Blackcolor),
+        onSurface: Whitecolor),
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: Blackcolor),
       centerTitle: false,
