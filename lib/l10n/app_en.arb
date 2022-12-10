@@ -10,6 +10,7 @@
         "taskname" : "Title",
         "taskdesc" : "Descripition" ,
         "datetitle" : " Select Date",
+                    "datelang"  :"en_US",
         "addbutt" : "Add Task"
 
 }

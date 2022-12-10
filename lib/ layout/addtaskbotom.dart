@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/models/providers/addtaskprovider.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTaskBottom extends StatelessWidget {
@@ -79,7 +80,7 @@ class AddTaskBottom extends StatelessWidget {
                   prov.SelectDate(context);
                 },
                 child: Text(
-                  '${DateFormat('EEE, MMM d, ''yyyy').format(prov.selectedDate)}',
+                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.selectedDate)}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),

@@ -10,5 +10,6 @@
             "taskname" : "العنوان",
             "taskdesc" : "الوصف" ,
             "datetitle" : " اختار التاريخ",
+            "datelang"  :"ar_EG",
             "addbutt" : "إضافة المهمة"
 }
