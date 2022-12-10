@@ -1,0 +1,16 @@
+{
+    "lang": "Languages",
+    "en" : "English",
+    "ar" : "Arabic",
+     "mode": "Theme Mode",
+      "light" : "Light Mode",
+      "dark" : "Dark Mode",
+        "title" : "Route Tasks",
+        "addtitle" : "Add New Task",
+        "taskname" : "Title",
+        "taskdesc" : "Descripition" ,
+        "datetitle" : " Select Date",
+                    "datelang"  :"en_US",
+        "addbutt" : "Add Task"
+
+}

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/models/providers/addtaskprovider.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTaskBottom extends StatelessWidget {
   // const AddTaskBottom({Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class AddTaskBottom extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Add New Task',
+                AppLocalizations.of(context)!.addtitle,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
@@ -38,7 +40,7 @@ class AddTaskBottom extends StatelessWidget {
                   TextFormField(
                     controller: titleController,
                     decoration: InputDecoration(
-                        label: Text('Title'),
+                        label: Text(AppLocalizations.of(context)!.taskname),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(color: Primarycolor)),
@@ -53,7 +55,7 @@ class AddTaskBottom extends StatelessWidget {
                     controller: discrpController,
                     maxLines: 3,
                     decoration: InputDecoration(
-                        label: Text('Description'),
+                        label: Text(AppLocalizations.of(context)!.taskdesc),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(color: Primarycolor)),
@@ -67,7 +69,7 @@ class AddTaskBottom extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                'Select Date',
+                AppLocalizations.of(context)!.datetitle,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               SizedBox(
@@ -78,7 +80,7 @@ class AddTaskBottom extends StatelessWidget {
                   prov.SelectDate(context);
                 },
                 child: Text(
-                  '${DateFormat('EEE, MMM d, ''yyyy').format(prov.selectedDate)}',
+                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.selectedDate)}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
@@ -86,7 +88,7 @@ class AddTaskBottom extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Add Task'))
+              ElevatedButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.addbutt))
             ],
           ),
         );

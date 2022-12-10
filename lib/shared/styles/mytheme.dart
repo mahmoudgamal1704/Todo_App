@@ -15,7 +15,7 @@ class MyTheme {
         error: err,
         onError: Whitecolor,
         background: BackGcolor,
-        onBackground: Blackcolor,
+        onBackground: Whitecolor,
         surface: Colors.grey,
         onSurface: Blackcolor),
     appBarTheme: AppBarTheme(
@@ -54,9 +54,9 @@ class MyTheme {
         error: err,
         onError: Whitecolor,
         background: BackGdarkcolor,
-        onBackground: Blackcolor,
+        onBackground: backdropdarkcolor,
         surface: Colors.grey,
-        onSurface: Blackcolor),
+        onSurface: Whitecolor),
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: Blackcolor),
       centerTitle: false,
