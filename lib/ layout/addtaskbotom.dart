@@ -12,8 +12,6 @@ class AddTaskBottom extends StatelessWidget {
   var titleController = TextEditingController();
   var discrpController = TextEditingController();
 
-  // DateTime selectedDate = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -25,6 +23,7 @@ class AddTaskBottom extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 AppLocalizations.of(context)!.addtitle,
@@ -39,6 +38,7 @@ class AddTaskBottom extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: titleController,
+
                     decoration: InputDecoration(
                         label: Text(AppLocalizations.of(context)!.taskname),
                         enabledBorder: OutlineInputBorder(

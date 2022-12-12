@@ -69,9 +69,13 @@ class HomeLayout extends StatelessWidget {
 
   void AddTaskBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (context) {
-        return AddTaskBottom();
+        return Padding(
+          padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: AddTaskBottom(),
+        );
       },
     );
   }
