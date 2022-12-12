@@ -58,14 +58,18 @@ class MyTheme {
         surface: Colors.grey,
         onSurface: Whitecolor),
     appBarTheme: AppBarTheme(
+      color: Primarycolor,
       iconTheme: IconThemeData(color: Blackcolor),
       centerTitle: false,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Primarycolor,
     ),
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: Color.fromRGBO(20, 25, 34, 1.0),
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Color.fromRGBO(20, 25, 34, 1.0),
+      // backgroundColor: Color.fromRGBO(255, 0, 0, 1.0),
       selectedItemColor: Primarycolor,
       unselectedItemColor: Whitecolor,
     ),

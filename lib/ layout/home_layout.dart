@@ -34,6 +34,7 @@ class HomeLayout extends StatelessWidget {
                   StadiumBorder(side: BorderSide(color: Whitecolor, width: 3))),
           bottomNavigationBar: BottomAppBar(
             // color: Colors.transparent,
+            // color: Color.fromRGBO(255, 0, 0, 1.0),
             notchMargin: 10,
             shape: CircularNotchedRectangle(),
             child: BottomNavigationBar(
