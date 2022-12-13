@@ -56,7 +56,7 @@ class MyTheme {
         error: err,
         onError: Whitecolor,
         background: BackGdarkcolor,
-        onBackground: backdropdarkcolor,
+        onBackground: daysbackgdarkcolor,
         surface: Colors.grey,
         onSurface: Whitecolor),
     appBarTheme: AppBarTheme(

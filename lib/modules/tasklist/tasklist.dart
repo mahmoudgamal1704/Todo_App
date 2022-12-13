@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:todoapp/modules/tasklist/taskitem.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 class TaskList extends StatelessWidget {
   // const TaskList({Key? key}) : super(key: key);
@@ -23,7 +24,14 @@ class TaskList extends StatelessWidget {
             dotsColor: Whitecolor,
             selectableDayPredicate: (date) => true,
             locale: 'en',
-          )
+          ),
+          Expanded(
+              child: ListView.builder(
+
+                itemBuilder: (context, index) {
+                  return TaskItem();
+                },
+                itemCount: 15,))
 
         ],
       ),
