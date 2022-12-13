@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/models/data/appdata.dart';
+import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/modules/tasklist/taskitem.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 class TaskList extends StatelessWidget {
@@ -7,6 +10,8 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tasksprov = Provider.of<MainProvider>(context);
+    // List tasks = AppData.getTaskfromFirestore();
     return Container(
       color: Theme.of(context).colorScheme.background,
       child: Column(
@@ -30,9 +35,9 @@ class TaskList extends StatelessWidget {
               child: ListView.builder(
 
                 itemBuilder: (context, index) {
-                  return TaskItem();
+                  return TaskItem(tasksprov.tasks[index]);
                 },
-                itemCount: 15,))
+                itemCount: tasksprov.tasks.length,))
 
         ],
       ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 
+import '../../models/data/task.dart';
+
 class TaskItem extends StatelessWidget {
   // const TaskItem({Key? key}) : super(key: key);
 
+  Task task;
+  TaskItem(this.task);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +34,11 @@ class TaskItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'title',
+                '${task.title}',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Text(
-                'date',
+                '${task.date}',
               ),
             ],
           )),
