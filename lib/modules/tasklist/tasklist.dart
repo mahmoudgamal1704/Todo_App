@@ -25,6 +25,7 @@ class TaskList extends StatelessWidget {
             selectableDayPredicate: (date) => true,
             locale: 'en',
           ),
+          SizedBox(height: 20,),
           Expanded(
               child: ListView.builder(
 

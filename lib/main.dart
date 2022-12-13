@@ -5,8 +5,10 @@ import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/shared/styles/mytheme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
   runApp( ChangeNotifierProvider(create: (BuildContext context)=> MainProvider(),
   child: MyApp()));
 }

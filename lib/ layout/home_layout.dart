@@ -20,7 +20,9 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.title ,),
+            title: Text(
+              AppLocalizations.of(context)!.title,
+            ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -73,7 +75,8 @@ class HomeLayout extends StatelessWidget {
       context: context,
       builder: (context) {
         return Padding(
-          padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: AddTaskBottom(),
         );
       },

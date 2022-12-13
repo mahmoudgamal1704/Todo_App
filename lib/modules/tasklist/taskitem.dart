@@ -7,8 +7,8 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onBackground,
           borderRadius: BorderRadius.circular(8)),
@@ -17,22 +17,31 @@ class TaskItem extends StatelessWidget {
           Container(
             width: 5,
             height: 50,
-            color: Primarycolor,
+            decoration: BoxDecoration(
+              color: Primarycolor,
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
-          SizedBox(width: 25,),
+          SizedBox(
+            width: 25,
+          ),
           Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('title',style: Theme.of(context).textTheme.subtitle1,),
-              Text('date',),
+              Text(
+                'title',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Text(
+                'date',
+              ),
             ],
           )),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
             decoration: BoxDecoration(
-                color: Primarycolor,
-                borderRadius: BorderRadius.circular(10)),
+                color: Primarycolor, borderRadius: BorderRadius.circular(10)),
             child: Icon(
               Icons.done,
               color: Whitecolor,
