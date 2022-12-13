@@ -9,9 +9,9 @@ class MyTheme {
     colorScheme: ColorScheme(
         brightness: Brightness.light,
         primary: Primarycolor,
-        onPrimary: Whitecolor,
+        onPrimary: Primarycolor,
         secondary: Greencolor,
-        onSecondary: Whitecolor,
+        onSecondary: Blackcolor,
         error: err,
         onError: Whitecolor,
         background: BackGcolor,
@@ -19,6 +19,8 @@ class MyTheme {
         surface: Colors.grey,
         onSurface: Blackcolor),
     appBarTheme: AppBarTheme(
+      color: Primarycolor,
+      titleTextStyle: TextStyle(color: Whitecolor ,fontSize: 30),
       iconTheme: IconThemeData(color: Whitecolor),
       centerTitle: false,
     ),
@@ -58,6 +60,8 @@ class MyTheme {
         surface: Colors.grey,
         onSurface: Whitecolor),
     appBarTheme: AppBarTheme(
+      titleTextStyle: TextStyle(color: Blackcolor,fontSize: 30 ),
+
       color: Primarycolor,
       iconTheme: IconThemeData(color: Blackcolor),
       centerTitle: false,

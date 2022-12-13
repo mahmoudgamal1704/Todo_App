@@ -20,7 +20,7 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.title ),
+            title: Text(AppLocalizations.of(context)!.title ,),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
