@@ -38,7 +38,7 @@ class TaskItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Text(
-                '${task.date}',
+                '${DateTime.fromMicrosecondsSinceEpoch(task.date)}',
               ),
             ],
           )),

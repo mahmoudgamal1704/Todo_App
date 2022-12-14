@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/models/data/task.dart';
 import 'package:todoapp/models/providers/addtaskprovider.dart';
+import 'package:todoapp/models/providers/listtaskprovider.dart';
 import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -22,7 +23,7 @@ class AddTaskBottom extends StatelessWidget {
       create: (context) => AddTaskProvider(),
       builder: (context, child) {
         var prov = Provider.of<AddTaskProvider>(context);
-        var taskprov = Provider.of<MainProvider>(context);
+        // var taskprov = Provider.of<ListTaskProvider>(context);
         return Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -114,7 +115,7 @@ class AddTaskBottom extends StatelessWidget {
                         date: prov.selectedDate.microsecondsSinceEpoch);
                     addTaskToFireStore(task);
                     prov.refresh();
-                    taskprov.getTaskfromFirestore();
+                    // taskprov.getTaskfromFirestore(taskprov.currentDate);
                   }
                 },
                 child: Text(AppLocalizations.of(context)!.addbutt,
