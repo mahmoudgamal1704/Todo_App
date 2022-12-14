@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../shared/network/local/firebase_utls.dart';
+
 class AppData {
 
  static Map AppLang(BuildContext context) {
@@ -11,6 +13,7 @@ class AppData {
 
     };
   }
+  // static
  static Map<ThemeMode, String> Appmodes(BuildContext context) {
    return {
      ThemeMode.light :AppLocalizations.of(context)!.light,
