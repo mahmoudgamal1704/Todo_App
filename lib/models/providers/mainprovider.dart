@@ -23,7 +23,7 @@ class MainProvider extends ChangeNotifier {
     Currentmode = key;
     notifyListeners();
   }
- void getTaskfromFirestore()  {
+  getTaskfromFirestore()  {
     tasks.clear();
    var collection = getTaskCollection();
     collection.get().then((value) {
@@ -35,6 +35,7 @@ class MainProvider extends ChangeNotifier {
       }
       // print('dfdd ${tasks.length}');
       notifyListeners();
+      return true;
     });
 
   }

@@ -11,6 +11,11 @@ class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tasksprov = Provider.of<MainProvider>(context);
+    void refresh() {
+      return tasksprov.getTaskfromFirestore();
+    }
+    final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+     GlobalKey<RefreshIndicatorState>();
     // List tasks = AppData.getTaskfromFirestore();
     return Container(
       color: Theme.of(context).colorScheme.background,
@@ -32,15 +37,19 @@ class TaskList extends StatelessWidget {
           ),
           SizedBox(height: 20,),
           Expanded(
-              child: ListView.builder(
+              child: RefreshIndicator(
+                key: refreshIndicatorKey,
+                onRefresh: () => tasksprov.getTaskfromFirestore(),
+                child: ListView.builder(
 
-                itemBuilder: (context, index) {
-                  return TaskItem(tasksprov.tasks[index]);
-                },
-                itemCount: tasksprov.tasks.length,))
-
+                  itemBuilder: (context, index) {
+                    return TaskItem(tasksprov.tasks[index]);
+                  },
+                  itemCount: tasksprov.tasks.length,),
+              ))
         ],
       ),
     );
   }
+
 }
