@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../shared/network/local/firebase_utls.dart';
+import '../data/task.dart';
 
 class ListTaskProvider extends ChangeNotifier {
   DateTime currentDate = DateTime.now();
-  // DateTime firstDate=currentDate
   List tasks = [];
-
   getTaskfromFirestore(DateTime date) async {
     currentDate=date;
     tasks.clear();
@@ -30,12 +29,15 @@ class ListTaskProvider extends ChangeNotifier {
       if (value.docs.isNotEmpty) {
         value.docs.forEach((element) {
           tasks.add(element.data());
-          // print(element.data().id);
         });
       }
-      // print('dfdd ${tasks.length}');
       notifyListeners();
-      // return true;
     });
+  }
+
+  deleteTaskfromFirestore(Task task) {
+    deleteTaskFromFirestore(task);
+    getTaskfromFirestore(currentDate);
+    notifyListeners();
   }
 }

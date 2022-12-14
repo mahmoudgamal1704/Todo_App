@@ -21,3 +21,7 @@ void addTaskToFireStore(Task task) {
  task.id = doc.id;
  doc.set(task);
 }
+void deleteTaskFromFirestore(Task task){
+  var collection = getTaskCollection();
+  collection.doc('${task.id}').delete();
+}
