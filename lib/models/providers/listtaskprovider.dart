@@ -1,48 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/models/data/appdata.dart';
 
 import '../../shared/network/local/firebase_utls.dart';
 import '../data/task.dart';
 
 class ListTaskProvider extends ChangeNotifier {
-  DateTime currentDate = DateTime.now();
-  List tasks = [];
+  DateTime selectedDate = DateTime.now();
+  var titleController = TextEditingController();
+  var discrpController = TextEditingController();
 
-  getTaskfromFirestore(DateTime date) async {
-    currentDate=date;
-    tasks.clear();
-    var collection = getTaskCollection();
-    collection
-        .where('date',
-        isGreaterThanOrEqualTo: currentDate.subtract(Duration(hours: currentDate.hour,
-            minutes: currentDate.minute,
-            seconds:currentDate.second,
-            milliseconds: currentDate.millisecond,
-            microseconds:currentDate.microsecond))
-            .microsecondsSinceEpoch).where('date',
-        isLessThan: currentDate.add(Duration(days: 1)).subtract(Duration(hours: currentDate.hour,
-            minutes: currentDate.minute,
-            seconds:currentDate.second,
-            milliseconds: currentDate.millisecond,
-            microseconds:currentDate.microsecond))
-            .microsecondsSinceEpoch)
-        .get()
-        .then((value) {
-      if (value.docs.isNotEmpty) {
-        value.docs.forEach((element) {
-          tasks.add(element.data());
-        });
-      }
-      notifyListeners();
-    });
+  void SelectDate(BuildContext context) async {
+    DateTime? chossendate = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(Duration(days: 365)));
+    if (chossendate == null) return;
+    selectedDate = chossendate;
+    notifyListeners();
   }
-
+  void getData (Task task ){
+    titleController.text=task.title;
+    discrpController.text=task.description;
+    selectedDate=DateTime.fromMicrosecondsSinceEpoch(task.date);
+    notifyListeners();
+  }
   updateTask(Task task){
   editTaskfromFireStore(task);
   notifyListeners();
 }
   deleteTaskfromFirestore(Task task) {
     deleteTaskFromFirestore(task);
-    tasks.remove(task);
+    AppData.TasksList.remove(task);
     notifyListeners();
   }
 }

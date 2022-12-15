@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
@@ -8,6 +8,7 @@ import 'package:todoapp/models/providers/listtaskprovider.dart';
 import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/modules/tasklist/taskitem.dart';
 import 'package:todoapp/shared/styles/colors.dart';
+
 class TaskList extends StatelessWidget {
   // const TaskList({Key? key}) : super(key: key);
 
@@ -16,22 +17,23 @@ class TaskList extends StatelessWidget {
     final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
      GlobalKey<RefreshIndicatorState>();
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ListTaskProvider()..getTaskfromFirestore(DateTime.now()),
+      create: (BuildContext context) => ListTaskProvider(),
       builder: (context, child) {
-        var taskprov = Provider.of<ListTaskProvider>(context);
+        var tasksprov = Provider.of<MainProvider>(context);
         Future<void> refresh(){
-          return taskprov.getTaskfromFirestore(taskprov.currentDate);
+          return tasksprov.getTaskfromFirestore(tasksprov.currentDate);
         }
         return Container(
           color: Theme.of(context).colorScheme.background,
           child: Column(
             children: [
               CalendarTimeline(
-                initialDate: taskprov.currentDate,
-                firstDate: taskprov.currentDate.subtract(Duration(days: 365)),
-                lastDate: taskprov.currentDate.add(Duration(days: 365)),
+                initialDate:  tasksprov.calenderdate,
+                firstDate: tasksprov.currentDate.subtract(Duration(days: 365)),
+                lastDate: tasksprov.currentDate.add(Duration(days: 365)),
                 onDateSelected: (date) {
-                  return taskprov.getTaskfromFirestore(date);
+                  tasksprov.calenderdate = date;
+                  return tasksprov.getTaskfromFirestore(date);
                 },
                 leftMargin: 20,
                 monthColor: Theme.of(context).colorScheme.onSecondary,
@@ -50,9 +52,10 @@ class TaskList extends StatelessWidget {
                     child: ListView.builder(
 
                       itemBuilder: (context, index) {
-                        return TaskItem(taskprov.tasks[index]);
+                        print('${AppData.TasksList.length} asdr');
+                        return TaskItem(AppData.TasksList[index]);
                       },
-                      itemCount: taskprov.tasks.length,),
+                      itemCount: AppData.TasksList.length,),
                   ))
             ],
           ),

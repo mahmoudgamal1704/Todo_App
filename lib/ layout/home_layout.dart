@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/%20layout/addtaskbotom.dart';
-import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/models/providers/tabprovider.dart';
 import 'package:todoapp/modules/setting/setting.dart';
 import 'package:todoapp/modules/tasklist/tasklist.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import '../models/providers/mainprovider.dart';
 class HomeLayout extends StatelessWidget {
-  // const HomeLayout({Key? key}) : super(key: key);
   static const String RouteName = 'Home';
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => TapsProvider(),
       builder: (context, child) {
         var tapProvider = Provider.of<TapsProvider>(context);
+        var listprov = Provider.of<MainProvider>(context);
         return Scaffold(
           extendBody: true,
           appBar: AppBar(
@@ -29,7 +27,7 @@ class HomeLayout extends StatelessWidget {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                AddTaskBottomSheet(context);
+                AddTaskBottomSheet(context,listprov);
               },
               child: Icon(Icons.add),
               //border for float button
@@ -70,7 +68,7 @@ class HomeLayout extends StatelessWidget {
     );
   }
 
-  void AddTaskBottomSheet(BuildContext context) {
+  void AddTaskBottomSheet(BuildContext context, MainProvider listprov) {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
