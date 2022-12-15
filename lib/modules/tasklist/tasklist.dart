@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
@@ -8,6 +8,7 @@ import 'package:todoapp/models/providers/listtaskprovider.dart';
 import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/modules/tasklist/taskitem.dart';
 import 'package:todoapp/shared/styles/colors.dart';
+
 class TaskList extends StatelessWidget {
   // const TaskList({Key? key}) : super(key: key);
 
@@ -16,11 +17,12 @@ class TaskList extends StatelessWidget {
     final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
      GlobalKey<RefreshIndicatorState>();
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ListTaskProvider()..getTaskfromFirestore(DateTime.now()),
+      create: (BuildContext context) => ListTaskProvider(),
       builder: (context, child) {
         var taskprov = Provider.of<ListTaskProvider>(context);
+        var tasksprov = Provider.of<MainProvider>(context);
         Future<void> refresh(){
-          return taskprov.getTaskfromFirestore(taskprov.currentDate);
+          return tasksprov.getTaskfromFirestore(taskprov.currentDate);
         }
         return Container(
           color: Theme.of(context).colorScheme.background,
@@ -50,9 +52,10 @@ class TaskList extends StatelessWidget {
                     child: ListView.builder(
 
                       itemBuilder: (context, index) {
-                        return TaskItem(taskprov.tasks[index]);
+                        print('${AppData.TasksList.length} asdr');
+                        return TaskItem(AppData.TasksList[index]);
                       },
-                      itemCount: taskprov.tasks.length,),
+                      itemCount: AppData.TasksList.length,),
                   ))
             ],
           ),

@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/models/data/appdata.dart';
 
 import '../../shared/network/local/firebase_utls.dart';
 import '../data/task.dart';
 
 class ListTaskProvider extends ChangeNotifier {
   DateTime currentDate = DateTime.now();
-  List tasks = [];
+
+  var titleController = TextEditingController();
+  var discrpController = TextEditingController();
+
+  void SelectDate(BuildContext context) async {
+    DateTime? chossendate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(Duration(days: 365)));
+    if (chossendate == null) return;
+    currentDate = chossendate;
+    notifyListeners();
+  }
 
   getTaskfromFirestore(DateTime date) async {
     currentDate=date;
-    tasks.clear();
+    AppData.TasksList.clear();
     var collection = getTaskCollection();
     collection
         .where('date',
@@ -29,20 +43,19 @@ class ListTaskProvider extends ChangeNotifier {
         .then((value) {
       if (value.docs.isNotEmpty) {
         value.docs.forEach((element) {
-          tasks.add(element.data());
+          AppData.TasksList.add(element.data());
         });
       }
       notifyListeners();
     });
   }
-
   updateTask(Task task){
   editTaskfromFireStore(task);
   notifyListeners();
 }
   deleteTaskfromFirestore(Task task) {
     deleteTaskFromFirestore(task);
-    tasks.remove(task);
+    AppData.TasksList.remove(task);
     notifyListeners();
   }
 }

@@ -7,6 +7,7 @@ import 'package:todoapp/models/providers/addtaskprovider.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../models/providers/listtaskprovider.dart';
 import '../shared/network/local/firebase_utls.dart';
 
 class AddTaskBottom extends StatelessWidget {
@@ -17,9 +18,12 @@ class AddTaskBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AddTaskProvider(),
+      create: (context) => ListTaskProvider(),
       builder: (context, child) {
-        var prov = Provider.of<AddTaskProvider>(context);
+        var prov = Provider.of<ListTaskProvider>(context);
+        // Future<void> refresh(){
+        //   return prov.getTaskfromFirestore(prov.currentDate);
+        // }
         // var taskprov = Provider.of<ListTaskProvider>(context);
         return Container(
           width: double.infinity,
@@ -95,7 +99,7 @@ class AddTaskBottom extends StatelessWidget {
                   prov.SelectDate(context);
                 },
                 child: Text(
-                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.selectedDate)}',
+                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.currentDate)}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
@@ -109,9 +113,11 @@ class AddTaskBottom extends StatelessWidget {
                     Task task = Task(
                         title: prov.titleController.text,
                         description: prov.discrpController.text,
-                        date: prov.selectedDate.microsecondsSinceEpoch);
+                        date: prov.currentDate.microsecondsSinceEpoch);
                     addTaskToFireStore(task);
-                    prov.refresh();
+                    // prov.refresh();
+                    // refresh();
+                    Navigator.of(context).pop();
                     // taskprov.getTaskfromFirestore(taskprov.currentDate);
                   }
                 },

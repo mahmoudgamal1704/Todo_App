@@ -9,11 +9,11 @@ CollectionReference<Task> getTaskCollection (){
     fromFirestore: (snapshot, options) => Task.fromJson(snapshot.data()!),
     toFirestore: (task, options) => task.toJson(),);
 }
-getTaskfromFirestore() async {
-  var collection = getTaskCollection();
-  QuerySnapshot querySnapshot = await collection.get();
-  List j = querySnapshot.docs;
-}
+// getTaskfromFirestore() async {
+//   var collection = getTaskCollection();
+//   QuerySnapshot querySnapshot = await collection.get();
+//   List j = querySnapshot.docs;
+// }
 void addTaskToFireStore(Task task) {
  var collection = getTaskCollection();
  var doc = collection.doc();

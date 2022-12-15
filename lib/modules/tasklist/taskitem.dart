@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/%20layout/edittaskbottom.dart';
+import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/shared/items/showdialog.dart';
 import 'package:todoapp/shared/network/local/firebase_utls.dart';
 import 'package:todoapp/shared/styles/colors.dart';
@@ -19,6 +20,7 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tasksprov = Provider.of<MainProvider>(context);
     void EditTaskBottomSheet(BuildContext context) {
       showModalBottomSheet(
         isScrollControlled: true,
@@ -30,7 +32,9 @@ class TaskItem extends StatelessWidget {
             child: EditTaskBottom(task),
           );
         },
-      );
+      ).whenComplete(() {
+        tasksprov.refreshlist();
+      });
     }
     var taskprov = Provider.of<ListTaskProvider>(context);
     return Padding(
