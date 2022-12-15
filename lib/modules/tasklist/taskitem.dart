@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/shared/items/showdialog.dart';
 import 'package:todoapp/shared/network/local/firebase_utls.dart';
 import 'package:todoapp/shared/styles/colors.dart';
@@ -18,6 +19,19 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void EditTaskBottomSheet(BuildContext context) {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: EditTaskBottom(task),
+          );
+        },
+      );
+    }
     var taskprov = Provider.of<ListTaskProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -55,7 +69,7 @@ class TaskItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               padding: EdgeInsets.all(9),
               onPressed: (context) {
-                ShowDialog.showMyDialog(context,taskprov.deleteTaskfromFirestore,task);
+                EditTaskBottomSheet(context);
               },
               backgroundColor: Primarycolor,
               foregroundColor: Colors.white,

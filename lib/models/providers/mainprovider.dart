@@ -1,8 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import '../../shared/network/local/firebase_utls.dart';
-import '../data/task.dart';
 
 class MainProvider extends ChangeNotifier {
   String CurrentLangcode = 'en';

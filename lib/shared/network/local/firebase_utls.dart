@@ -21,6 +21,12 @@ void addTaskToFireStore(Task task) {
  task.id = doc.id;
  doc.set(task);
 }
+void editTaskfromFireStore(Task task) {
+  var collection = getTaskCollection();
+  print('${task.id}');
+  var doc = collection.doc(task.id);
+  doc.update(task.toJson());
+}
 void deleteTaskFromFirestore(Task task){
   var collection = getTaskCollection();
   collection.doc('${task.id}').delete();
