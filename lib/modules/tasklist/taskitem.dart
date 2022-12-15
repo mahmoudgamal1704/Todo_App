@@ -6,12 +6,9 @@ import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/shared/items/showdialog.dart';
 import 'package:todoapp/shared/styles/colors.dart';
-
 import '../../models/data/task.dart';
 import '../../models/providers/listtaskprovider.dart';
-
 class TaskItem extends StatelessWidget {
-  // const TaskItem({Key? key}) : super(key: key);
   Task task;
   TaskItem(this.task);
   @override
