@@ -29,9 +29,5 @@ class ListTaskProvider extends ChangeNotifier {
   editTaskfromFireStore(task);
   notifyListeners();
 }
-  deleteTaskfromFirestore(Task task) {
-    deleteTaskFromFirestore(task);
-    AppData.TasksList.remove(task);
-    notifyListeners();
-  }
+
 }

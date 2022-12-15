@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/models/providers/mainprovider.dart';
 import 'package:todoapp/shared/items/showdialog.dart';
-import 'package:todoapp/shared/network/local/firebase_utls.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 
 import '../../models/data/task.dart';
@@ -13,11 +12,8 @@ import '../../models/providers/listtaskprovider.dart';
 
 class TaskItem extends StatelessWidget {
   // const TaskItem({Key? key}) : super(key: key);
-
   Task task;
-
   TaskItem(this.task);
-
   @override
   Widget build(BuildContext context) {
     void EditTaskBottomSheet(BuildContext context) {
@@ -35,6 +31,7 @@ class TaskItem extends StatelessWidget {
     }
 
     var taskprov = Provider.of<ListTaskProvider>(context);
+    var tasksprov = Provider.of<MainProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Slidable(
@@ -53,7 +50,7 @@ class TaskItem extends StatelessWidget {
               onPressed: (context) {
                 // taskprov.deleteTaskfromFirestore(task);
                 ShowDialog.showMyDialog(
-                    context, taskprov.deleteTaskfromFirestore, task);
+                    context, tasksprov.deleteTaskfromFirestore, task);
               },
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
