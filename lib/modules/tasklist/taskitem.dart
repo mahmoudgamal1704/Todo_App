@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/shared/items/showdialog.dart';
 import 'package:todoapp/shared/network/local/firebase_utls.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 
@@ -32,14 +33,34 @@ class TaskItem extends StatelessWidget {
               // flex: 2,
               borderRadius: BorderRadius.circular(8),
               padding: EdgeInsets.all(9),
-
               onPressed: (context) {
-                taskprov.deleteTaskfromFirestore(task);
+                // taskprov.deleteTaskfromFirestore(task);
+                ShowDialog.showMyDialog(context,taskprov.deleteTaskfromFirestore,task);
               },
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',
+            ),
+          ],
+        ),
+        endActionPane: ActionPane(
+          motion: BehindMotion(),
+          extentRatio: .2,
+          dragDismissible: false,
+          closeThreshold: .1,
+          children: [
+            SlidableAction(
+              // flex: 2,
+              borderRadius: BorderRadius.circular(8),
+              padding: EdgeInsets.all(9),
+              onPressed: (context) {
+                ShowDialog.showMyDialog(context,taskprov.deleteTaskfromFirestore,task);
+              },
+              backgroundColor: Primarycolor,
+              foregroundColor: Colors.white,
+              icon: Icons.edit,
+              label: 'edit',
             ),
           ],
         ),
