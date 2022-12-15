@@ -2,25 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/models/data/task.dart';
-import 'package:todoapp/models/providers/addtaskprovider.dart';
 
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import '../models/providers/edittaskprovider.dart';
 import '../shared/network/local/firebase_utls.dart';
 
-class AddTaskBottom extends StatelessWidget {
+class EditTaskBottom extends StatelessWidget {
   // const AddTaskBottom({Key? key}) : super(key: key);
-
+  Task task;
+  EditTaskBottom(this.task);
   static final GlobalKey<FormState> frmKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AddTaskProvider(),
+      create: (context) => EditTaskProvider()..getData(task),
       builder: (context, child) {
-        var prov = Provider.of<AddTaskProvider>(context);
-        // var taskprov = Provider.of<ListTaskProvider>(context);
+        var prov = Provider.of<EditTaskProvider>(context);
         return Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -29,7 +28,7 @@ class AddTaskBottom extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                AppLocalizations.of(context)!.addtitle,
+                '${AppLocalizations.of(context)!.edittitle}',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
@@ -106,16 +105,19 @@ class AddTaskBottom extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (frmKey.currentState!.validate()) {
-                    Task task = Task(
-                        title: prov.titleController.text,
-                        description: prov.discrpController.text,
-                        date: prov.selectedDate.microsecondsSinceEpoch);
-                    addTaskToFireStore(task);
-                    prov.refresh();
-                    // taskprov.getTaskfromFirestore(taskprov.currentDate);
+                    task.title = prov.titleController.text;
+                    task.description = prov.discrpController.text;
+                    task.date=prov.selectedDate.microsecondsSinceEpoch;
+                    // Task task1 = Task(
+                    //   id: task.id,
+                    //     title: prov.titleController.text,
+                    //     description: prov.discrpController.text,
+                    //     date: prov.selectedDate.microsecondsSinceEpoch);
+                    editTaskfromFireStore(task);
+                    Navigator.of(context).pop();
                   }
                 },
-                child: Text(AppLocalizations.of(context)!.addbutt,
+                child: Text(AppLocalizations.of(context)!.editbutt,
                     style: Theme.of(context)
                         .textTheme
                         .headline1

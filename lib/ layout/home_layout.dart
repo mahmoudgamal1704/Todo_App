@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/%20layout/addtaskbotom.dart';
+import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/models/providers/tabprovider.dart';
 import 'package:todoapp/modules/setting/setting.dart';
 import 'package:todoapp/modules/tasklist/tasklist.dart';
@@ -82,6 +83,7 @@ class HomeLayout extends StatelessWidget {
       },
     );
   }
+
 
   List<Widget> tabs = [TaskList(), Settings()];
 }

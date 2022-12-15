@@ -9,7 +9,7 @@ class MyTheme {
     colorScheme: ColorScheme(
         brightness: Brightness.light,
         primary: Primarycolor,
-        onPrimary: Primarycolor,
+        onPrimary: Whitecolor,
         secondary: Greencolor,
         onSecondary: Blackcolor,
         error: err,

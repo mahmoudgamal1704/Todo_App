@@ -13,11 +13,19 @@ getTaskfromFirestore() async {
   var collection = getTaskCollection();
   QuerySnapshot querySnapshot = await collection.get();
   List j = querySnapshot.docs;
-  print(j[0]);
 }
 void addTaskToFireStore(Task task) {
  var collection = getTaskCollection();
  var doc = collection.doc();
  task.id = doc.id;
  doc.set(task);
+}
+void editTaskfromFireStore(Task task) {
+  var collection = getTaskCollection();
+  var doc = collection.doc(task.id);
+  doc.update(task.toJson());
+}
+void deleteTaskFromFirestore(Task task){
+  var collection = getTaskCollection();
+  collection.doc('${task.id}').delete();
 }

@@ -7,10 +7,14 @@
       "dark" : "Dark Mode",
         "title" : "Route Tasks",
         "addtitle" : "Add New Task",
+                    "edittitle" : "Edit The Task",
+
         "taskname" : "Title",
         "taskdesc" : "Descripition" ,
         "datetitle" : " Select Date",
                     "datelang"  :"en_US",
-        "addbutt" : "Add Task"
+        "addbutt" : "Add Task",
+                    "editbutt" : "Save Changes"
+
 
 }
