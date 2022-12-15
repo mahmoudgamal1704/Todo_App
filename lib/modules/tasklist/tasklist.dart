@@ -35,7 +35,7 @@ class TaskList extends StatelessWidget {
                 },
                 leftMargin: 20,
                 monthColor: Theme.of(context).colorScheme.onSecondary,
-                dayColor: Theme.of(context).colorScheme.onPrimary,
+                dayColor: Theme.of(context).colorScheme.onSurface,
                 activeDayColor: Whitecolor,
                 activeBackgroundDayColor: Theme.of(context).colorScheme.primary,
                 dotsColor: Whitecolor,

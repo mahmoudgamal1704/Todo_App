@@ -37,6 +37,7 @@ class TaskItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Slidable(
         key: const ValueKey(0),
+        enabled: !task.isDone,
         startActionPane: ActionPane(
           motion: BehindMotion(),
           extentRatio: .2,
@@ -71,7 +72,7 @@ class TaskItem extends StatelessWidget {
               onPressed: (context) {
                 EditTaskBottomSheet(context);
               },
-              backgroundColor: Primarycolor,
+              backgroundColor: Greencolor,
               foregroundColor: Colors.white,
               icon: Icons.edit,
               label: 'edit',
@@ -102,7 +103,7 @@ class TaskItem extends StatelessWidget {
                 children: [
                   Text(
                     '${task.title}',
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: task.isDone ? Theme.of(context).textTheme.subtitle2:Theme.of(context).textTheme.subtitle1,
                   ),
                   Text(
                     '${DateFormat('hh:mm a').format(DateTime.fromMicrosecondsSinceEpoch(task.date))}',
@@ -110,17 +111,25 @@ class TaskItem extends StatelessWidget {
                   ),
                 ],
               )),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-                decoration: BoxDecoration(
-                    color: Primarycolor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Icon(
-                  Icons.done,
-                  color: Whitecolor,
-                  size: 35,
+              task.isDone ? Text('Done!',style: Theme.of(context).textTheme.subtitle2,):
+              InkWell(
+                onTap: () {
+                  task.isDone=true;
+                  taskprov.updateTask(task);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
+                  decoration: BoxDecoration(
+                      color: Primarycolor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Icon(
+                    Icons.done,
+                    color: Whitecolor,
+                    size: 35,
+                  ),
                 ),
               )
+
             ],
           ),
         ),

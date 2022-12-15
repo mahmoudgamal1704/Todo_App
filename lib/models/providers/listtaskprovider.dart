@@ -6,6 +6,7 @@ import '../data/task.dart';
 class ListTaskProvider extends ChangeNotifier {
   DateTime currentDate = DateTime.now();
   List tasks = [];
+
   getTaskfromFirestore(DateTime date) async {
     currentDate=date;
     tasks.clear();
@@ -35,9 +36,13 @@ class ListTaskProvider extends ChangeNotifier {
     });
   }
 
+  updateTask(Task task){
+  editTaskfromFireStore(task);
+  notifyListeners();
+}
   deleteTaskfromFirestore(Task task) {
     deleteTaskFromFirestore(task);
-    getTaskfromFirestore(currentDate);
+    tasks.remove(task);
     notifyListeners();
   }
 }

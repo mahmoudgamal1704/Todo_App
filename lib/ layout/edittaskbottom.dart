@@ -105,12 +105,15 @@ class EditTaskBottom extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (frmKey.currentState!.validate()) {
-                    Task task1 = Task(
-                      id: task.id,
-                        title: prov.titleController.text,
-                        description: prov.discrpController.text,
-                        date: prov.selectedDate.microsecondsSinceEpoch);
-                    editTaskfromFireStore(task1);
+                    task.title = prov.titleController.text;
+                    task.description = prov.discrpController.text;
+                    task.date=prov.selectedDate.microsecondsSinceEpoch;
+                    // Task task1 = Task(
+                    //   id: task.id,
+                    //     title: prov.titleController.text,
+                    //     description: prov.discrpController.text,
+                    //     date: prov.selectedDate.microsecondsSinceEpoch);
+                    editTaskfromFireStore(task);
                     Navigator.of(context).pop();
                   }
                 },
