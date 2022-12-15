@@ -20,22 +20,20 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tasksprov = Provider.of<MainProvider>(context);
     void EditTaskBottomSheet(BuildContext context) {
       showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) {
           return Padding(
-            padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: EditTaskBottom(task),
           );
         },
-      ).whenComplete(() {
-        tasksprov.refreshlist();
-      });
+      );
     }
+
     var taskprov = Provider.of<ListTaskProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -54,7 +52,8 @@ class TaskItem extends StatelessWidget {
               padding: EdgeInsets.all(9),
               onPressed: (context) {
                 // taskprov.deleteTaskfromFirestore(task);
-                ShowDialog.showMyDialog(context,taskprov.deleteTaskfromFirestore,task);
+                ShowDialog.showMyDialog(
+                    context, taskprov.deleteTaskfromFirestore, task);
               },
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
@@ -107,7 +106,9 @@ class TaskItem extends StatelessWidget {
                 children: [
                   Text(
                     '${task.title}',
-                    style: task.isDone ? Theme.of(context).textTheme.subtitle2:Theme.of(context).textTheme.subtitle1,
+                    style: task.isDone
+                        ? Theme.of(context).textTheme.subtitle2
+                        : Theme.of(context).textTheme.subtitle1,
                   ),
                   Text(
                     '${DateFormat('hh:mm a').format(DateTime.fromMicrosecondsSinceEpoch(task.date))}',
@@ -115,25 +116,29 @@ class TaskItem extends StatelessWidget {
                   ),
                 ],
               )),
-              task.isDone ? Text('Done!',style: Theme.of(context).textTheme.subtitle2,):
-              InkWell(
-                onTap: () {
-                  task.isDone=true;
-                  taskprov.updateTask(task);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-                  decoration: BoxDecoration(
-                      color: Primarycolor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Icon(
-                    Icons.done,
-                    color: Whitecolor,
-                    size: 35,
-                  ),
-                ),
-              )
-
+              task.isDone
+                  ? Text(
+                      'Done!',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    )
+                  : InkWell(
+                      onTap: () {
+                        task.isDone = true;
+                        taskprov.updateTask(task);
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 3),
+                        decoration: BoxDecoration(
+                            color: Primarycolor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Icon(
+                          Icons.done,
+                          color: Whitecolor,
+                          size: 35,
+                        ),
+                      ),
+                    )
             ],
           ),
         ),

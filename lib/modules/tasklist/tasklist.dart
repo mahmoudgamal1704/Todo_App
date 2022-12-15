@@ -19,21 +19,21 @@ class TaskList extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ListTaskProvider(),
       builder: (context, child) {
-        var taskprov = Provider.of<ListTaskProvider>(context);
         var tasksprov = Provider.of<MainProvider>(context);
         Future<void> refresh(){
-          return tasksprov.getTaskfromFirestore(taskprov.currentDate);
+          return tasksprov.getTaskfromFirestore(tasksprov.currentDate);
         }
         return Container(
           color: Theme.of(context).colorScheme.background,
           child: Column(
             children: [
               CalendarTimeline(
-                initialDate: taskprov.currentDate,
-                firstDate: taskprov.currentDate.subtract(Duration(days: 365)),
-                lastDate: taskprov.currentDate.add(Duration(days: 365)),
+                initialDate:  tasksprov.calenderdate,
+                firstDate: tasksprov.currentDate.subtract(Duration(days: 365)),
+                lastDate: tasksprov.currentDate.add(Duration(days: 365)),
                 onDateSelected: (date) {
-                  return taskprov.getTaskfromFirestore(date);
+                  tasksprov.calenderdate = date;
+                  return tasksprov.getTaskfromFirestore(date);
                 },
                 leftMargin: 20,
                 monthColor: Theme.of(context).colorScheme.onSecondary,

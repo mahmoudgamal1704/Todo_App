@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
 import '../../shared/network/local/firebase_utls.dart';
 import '../data/appdata.dart';
-
 class MainProvider extends ChangeNotifier {
+
   String CurrentLangcode = 'en';
   ThemeMode Currentmode = ThemeMode.light;
   DateTime currentDate = DateTime.now();
-  // List tasks = [];
-// Provider listprov = Provider
+  DateTime calenderdate = DateTime.now();
   void ChangeLanguage(Map k, String v) {
     var key = k.keys.firstWhere((element) => k[element] == v);
     CurrentLangcode = key.toString();
@@ -41,10 +39,9 @@ class MainProvider extends ChangeNotifier {
       }
       notifyListeners();
     });
+
   }
-  void refreshlist(){
-    notifyListeners();
-  }
+
   void ChangeMode(Map k, String v) {
     var key = k.keys.firstWhere((element) => k[element] == v);
     Currentmode = key;

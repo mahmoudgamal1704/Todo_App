@@ -10,9 +10,7 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map langmap = AppData.AppLang(context);
-    List langkeys = langmap.keys.toList();
     Map<ThemeMode, String> modemap = AppData.Appmodes(context);
-    List modekeys = modemap.keys.toList();
     var prov = Provider.of<MainProvider>(context);
     return Container(
       width: double.infinity,

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/%20layout/addtaskbotom.dart';
-import 'package:todoapp/%20layout/edittaskbottom.dart';
 import 'package:todoapp/models/providers/tabprovider.dart';
 import 'package:todoapp/modules/setting/setting.dart';
 import 'package:todoapp/modules/tasklist/tasklist.dart';
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../models/providers/listtaskprovider.dart';
 import '../models/providers/mainprovider.dart';
-
 class HomeLayout extends StatelessWidget {
-  // const HomeLayout({Key? key}) : super(key: key);
   static const String RouteName = 'Home';
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -85,9 +79,7 @@ class HomeLayout extends StatelessWidget {
           child: AddTaskBottom(),
         );
       },
-    ).whenComplete(() {
-      listprov.getTaskfromFirestore(DateTime.now());
-    });
+    );
   }
 
 

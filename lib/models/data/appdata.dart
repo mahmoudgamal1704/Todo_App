@@ -13,7 +13,6 @@ class AppData {
 
     };
   }
-  // static
  static Map<ThemeMode, String> Appmodes(BuildContext context) {
    return {
      ThemeMode.light :AppLocalizations.of(context)!.light,
@@ -21,8 +20,4 @@ class AppData {
 
    };
  }
- // static Map AppLang = {
- //    'en' :'English',
- //    'ar' : 'Arabic'
- //  };
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/models/data/task.dart';
-import 'package:todoapp/models/providers/addtaskprovider.dart';
+import 'package:todoapp/models/providers/mainprovider.dart';
 
 import 'package:todoapp/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -11,7 +11,6 @@ import '../models/providers/listtaskprovider.dart';
 import '../shared/network/local/firebase_utls.dart';
 
 class AddTaskBottom extends StatelessWidget {
-  // const AddTaskBottom({Key? key}) : super(key: key);
 
   static final GlobalKey<FormState> frmKey = GlobalKey<FormState>();
 
@@ -24,7 +23,7 @@ class AddTaskBottom extends StatelessWidget {
         // Future<void> refresh(){
         //   return prov.getTaskfromFirestore(prov.currentDate);
         // }
-        // var taskprov = Provider.of<ListTaskProvider>(context);
+        var taskprov = Provider.of<MainProvider>(context);
         return Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -99,7 +98,7 @@ class AddTaskBottom extends StatelessWidget {
                   prov.SelectDate(context);
                 },
                 child: Text(
-                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.currentDate)}',
+                  '${DateFormat.yMMMEd(AppLocalizations.of(context)!.datelang).format(prov.selectedDate)}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
@@ -113,12 +112,11 @@ class AddTaskBottom extends StatelessWidget {
                     Task task = Task(
                         title: prov.titleController.text,
                         description: prov.discrpController.text,
-                        date: prov.currentDate.microsecondsSinceEpoch);
-                    addTaskToFireStore(task);
-                    // prov.refresh();
-                    // refresh();
-                    Navigator.of(context).pop();
-                    // taskprov.getTaskfromFirestore(taskprov.currentDate);
+                        date: prov.selectedDate.microsecondsSinceEpoch);
+                    addTaskToFireStore(task).then((value) {
+                      taskprov.getTaskfromFirestore(taskprov.currentDate);
+                      Navigator.of(context).pop();
+                    });
                   }
                 },
                 child: Text(AppLocalizations.of(context)!.addbutt,
