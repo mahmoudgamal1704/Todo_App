@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../shared/network/local/firebase_utls.dart';
 import '../data/appdata.dart';
+import '../data/task.dart';
 class MainProvider extends ChangeNotifier {
-
   String CurrentLangcode = 'en';
   ThemeMode Currentmode = ThemeMode.light;
   DateTime currentDate = DateTime.now();
@@ -39,9 +39,12 @@ class MainProvider extends ChangeNotifier {
       }
       notifyListeners();
     });
-
   }
-
+  deleteTaskfromFirestore(Task task) {
+    deleteTaskFromFirestore(task);
+    AppData.TasksList.remove(task);
+    notifyListeners();
+  }
   void ChangeMode(Map k, String v) {
     var key = k.keys.firstWhere((element) => k[element] == v);
     Currentmode = key;

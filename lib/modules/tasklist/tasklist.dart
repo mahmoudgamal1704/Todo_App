@@ -52,7 +52,6 @@ class TaskList extends StatelessWidget {
                     child: ListView.builder(
 
                       itemBuilder: (context, index) {
-                        print('${AppData.TasksList.length} asdr');
                         return TaskItem(AppData.TasksList[index]);
                       },
                       itemCount: AppData.TasksList.length,),
