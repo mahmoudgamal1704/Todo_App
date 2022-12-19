@@ -40,7 +40,7 @@ class TaskList extends StatelessWidget {
                 dayColor: Theme.of(context).colorScheme.onSurface,
                 activeDayColor: Whitecolor,
                 activeBackgroundDayColor: Theme.of(context).colorScheme.primary,
-                dotsColor: Whitecolor,
+                // dotsColor: Whitecolor,
                 selectableDayPredicate: (date) => true,
                 locale: 'en',
               ),
